@@ -4,7 +4,10 @@
     "dependencies": {
         "device": "*",
         "darts": "*",
-        "color-coded-tilemap": "*"
+        "color-coded-tilemap": "*",
+        "arcade-minimap": "github:microsoft/arcade-minimap#v0.6.1",
+        "pxt-raycasting": "github:aqeeaqee/pxt-raycasting#v0.3.15",
+        "sprite-scaling": "*"
     },
     "files": [
         "main.blocks",
@@ -18,7 +21,7 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "1.10.36",
+        "target": "1.12.25",
         "targetId": "arcade"
     },
     "supportedTargets": [
