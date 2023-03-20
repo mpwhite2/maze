@@ -22,6 +22,12 @@
         "tilemapTile": true,
         "displayName": "myTile2"
     },
+    "tile4": {
+        "data": "hwQQABAAAAAAAAAAAAAA0AAAAAAAAADQAAAAAAAAANAAAAAAAAAA0AAAAAAAAADQAAAAAAAAANAAAAAAAAAA0AAAAAAAAADQAAAAAAAAANAAAAAAAAAA0AAAAAAAAADQAAAAAAAAANAAAAAAAAAA0AAAAAAAAADQAAAAAAAAANAAAAAAAAAA0A==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "myTile1"
+    },
     "level2": {
         "id": "level2",
         "mimeType": "application/mkcd-tilemap",
