@@ -1,6 +1,7 @@
 namespace SpriteKind {
     export const Blast = SpriteKind.create()
     export const Bomb = SpriteKind.create()
+    export const Null = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile0`, function (sprite, location) {
     info.changeScoreBy(20)
@@ -9,12 +10,48 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile0`, function (sprite, l
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     Render.toggleViewMode()
 })
+sprites.onOverlap(SpriteKind.Blast, SpriteKind.Enemy, function (sprite, otherSprite) {
+    sprites.destroy(otherSprite, effects.fire, 500)
+    sprites.destroy(sprite)
+    info.changeScoreBy(1)
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    Render.jumpWithHeightAndDuration(Player1, 42, 1000)
+    projectile = sprites.createProjectileFromSprite(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . 4 4 . . . . . . . 
+        . . . . . . . 4 4 . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, Player1, 0, 0)
+    projectile.setKind(SpriteKind.Blast)
+    projectile.setFlag(SpriteFlag.AutoDestroy, false)
+    projectile.lifespan = 2000
+    changeSpeed(200, projectile)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
     otherSprite.destroy(effects.confetti, 500)
     info.changeLifeBy(1)
+})
+function changeSpeed (speed: number, sprite: Sprite) {
+    td = ViewAngle
+    tdr = td * 3.1416 / 180
+    tx = speed * Math.cos(tdr)
+    ty = speed * Math.sin(tdr)
+    sprite.setVelocity(tx, ty)
+}
+controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
+    Render.jumpWithHeightAndDuration(Player1, 42, 1000)
 })
 info.onLifeZero(function () {
     game.over(false)
@@ -71,6 +108,12 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
         }
     }
 })
+let ty = 0
+let tx = 0
+let tdr = 0
+let ViewAngle = 0
+let td = 0
+let projectile: Sprite = null
 let Enemy1: Sprite = null
 let Snack: Sprite = null
 let Chest: Sprite = null
@@ -202,6 +245,25 @@ tiles.setCurrentTilemap(tilemap`level1`)
 Player1 = Render.getRenderSpriteVariable()
 Player1.x += 6
 info.setLife(3)
+let mySprite = sprites.create(img`
+    . . . . . . . 2 2 . . . . . . . 
+    . . . . . . . 2 2 . . . . . . . 
+    . . . . . . . 2 2 . . . . . . . 
+    . . . . . . . 2 2 . . . . . . . 
+    . . . . . 2 2 2 2 2 2 . . . . . 
+    . . . . 2 . . 2 2 . . 2 . . . . 
+    . . . . 2 . . . . . . 2 . . . . 
+    2 2 2 2 2 2 . . . . 2 2 2 2 2 2 
+    2 2 2 2 2 2 . . . . 2 2 2 2 2 2 
+    . . . . 2 . . . . . . 2 . . . . 
+    . . . . 2 . . 2 2 . . 2 . . . . 
+    . . . . . 2 2 2 2 2 2 . . . . . 
+    . . . . . . . 2 2 . . . . . . . 
+    . . . . . . . 2 2 . . . . . . . 
+    . . . . . . . 2 2 . . . . . . . 
+    . . . . . . . 2 2 . . . . . . . 
+    `, SpriteKind.Null)
+mySprite.setFlag(SpriteFlag.RelativeToCamera, true)
 for (let index = 0; index < 20; index++) {
     Chest = sprites.create(img`
         . . b b b b b b b b b b b b . . 
@@ -274,7 +336,7 @@ Enemy2.setFlag(SpriteFlag.GhostThroughWalls, false)
 tiles.placeOnRandomTile(Enemy2, assets.tile`transparency16`)
 Enemy2.follow(Player1, 20)
 info.setScore(0)
-Render.moveWithController(3, 3, 1)
+Render.moveWithController(3, 0, 1)
 for (let index = 0; index < 50; index++) {
     Enemy1 = sprites.create(img`
         ........................
@@ -305,6 +367,16 @@ for (let index = 0; index < 50; index++) {
     tiles.placeOnRandomTile(Enemy1, assets.tile`transparency16`)
     Enemy1.follow(Player1, 20)
 }
+forever(function () {
+    if (controller.left.isPressed()) {
+        ViewAngle += -5
+        Render.setViewAngleInDegree(ViewAngle)
+    }
+    if (controller.right.isPressed()) {
+        ViewAngle += 5
+        Render.setViewAngleInDegree(ViewAngle)
+    }
+})
 forever(function () {
     music.playMelody("C5 A B G A F G E ", 120)
     if (info.score() > 19) {
