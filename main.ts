@@ -16,6 +16,7 @@ sprites.onOverlap(SpriteKind.Blast, SpriteKind.Enemy, function (sprite, otherSpr
     info.changeScoreBy(1)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    music.play(music.melodyPlayable(music.zapped), music.PlaybackMode.InBackground)
     projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -36,8 +37,13 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         `, Player1, 0, 0)
     projectile.setKind(SpriteKind.Blast)
     projectile.setFlag(SpriteFlag.AutoDestroy, false)
+    projectile.setBounceOnWall(true)
     projectile.lifespan = 2000
+    projectile.setFlag(SpriteFlag.DestroyOnWall, true)
     changeSpeed(200, projectile)
+})
+sprites.onDestroyed(SpriteKind.Blast, function (sprite) {
+    music.play(music.melodyPlayable(music.smallCrash), music.PlaybackMode.InBackground)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
     otherSprite.destroy(effects.confetti, 500)
@@ -61,6 +67,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
     info.changeScoreBy(1)
 })
 sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
+    music.play(music.melodyPlayable(music.bigCrash), music.PlaybackMode.InBackground)
     for (let index = 0; index < 4; index++) {
         Enemy1 = sprites.create(img`
             ........................
@@ -378,7 +385,6 @@ forever(function () {
     }
 })
 forever(function () {
-    music.playMelody("C5 A B G A F G E ", 120)
     if (info.score() > 19) {
         tiles.setWallAt(tiles.getTileLocation(1, 1), false)
         tiles.setTileAt(tiles.getTileLocation(1, 1), assets.tile`transparency16`)
