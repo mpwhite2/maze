@@ -11,9 +11,8 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     Render.toggleViewMode()
 })
 sprites.onOverlap(SpriteKind.Blast, SpriteKind.Enemy, function (sprite, otherSprite) {
-    sprites.destroy(otherSprite, effects.fire, 500)
-    sprites.destroy(sprite)
     info.changeScoreBy(1)
+    sprites.destroy(otherSprite, effects.fire, 500)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     music.play(music.melodyPlayable(music.zapped), music.PlaybackMode.InBackground)
@@ -68,7 +67,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 })
 sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
     music.play(music.melodyPlayable(music.bigCrash), music.PlaybackMode.InBackground)
-    for (let index = 0; index < 4; index++) {
+    for (let index = 0; index < 2; index++) {
         Enemy1 = sprites.create(img`
             ........................
             ........................
@@ -115,6 +114,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
         }
     }
 })
+let mySprite2: Sprite = null
 let ty = 0
 let tx = 0
 let tdr = 0
@@ -374,6 +374,12 @@ for (let index = 0; index < 50; index++) {
     tiles.placeOnRandomTile(Enemy1, assets.tile`transparency16`)
     Enemy1.follow(Player1, 20)
 }
+game.onUpdate(function () {
+    mySprite2 = sprites.allOfKind(SpriteKind.Enemy)._pickRandom()
+    if (mySprite2.vx == 0 && mySprite2.vy == 0) {
+        tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
+    }
+})
 forever(function () {
     if (controller.left.isPressed()) {
         ViewAngle += -5
