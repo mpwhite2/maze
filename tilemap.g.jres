@@ -10,29 +10,29 @@
         "tilemapTile": true,
         "displayName": "myTile"
     },
-    "tile2": {
-        "data": "hwQQABAAAAD////////////MzMzMzMz/z8/MzMzM/PzP/MzMzMzP/M/Mz8zM/Mz8z8z8zMzPzPzPzMzP/MzM/M/MzPzPzMz8z8zM/M/MzPzPzMzP/MzM/M/M/MzMz8z8z8zPzMz8zPzP/MzMzMzP/M/PzMzMzPz8/8zMzMzMzP///////////w==",
-        "mimeType": "image/x-mkcd-f4",
-        "tilemapTile": true,
-        "displayName": "myTile2"
-    },
     "tile4": {
         "data": "hwQQABAAAAAAAAAAAAAA0AAAAAAAAADQAAAAAAAAANAAAAAAAAAA0AAAAAAAAADQAAAAAAAAANAAAAAAAAAA0AAAAAAAAADQAAAAAAAAANAAAAAAAAAA0AAAAAAAAADQAAAAAAAAANAAAAAAAAAA0AAAAAAAAADQAAAAAAAAANAAAAAAAAAA0A==",
         "mimeType": "image/x-mkcd-f4",
         "tilemapTile": true,
         "displayName": "myTile1"
     },
-    "tile5": {
-        "data": "hwQQABAAAAAdERERERERsdHd3d3d3d290d3d3d3d3b3R3d3d3d3dvdHd3d3d3d290d3d3d3d3b3R3d3d3d3dvdHd3d3d3d290d3d3d3d3b3R3d3d3d3dvdHd3d3d3d290d3d3d3d3b3R3d3d3d3dvdHd3d3d3d290d3d3d3d3b27u7u7u7u7uw==",
-        "mimeType": "image/x-mkcd-f4",
-        "tilemapTile": true,
-        "displayName": "myTile3"
-    },
     "tile3": {
         "data": "hwQQABAAAAC9u7vbvbu729uIiNiNhIi9i42Y2I2I2LiLiISIiImNuLuIiIiLiIi0i5iYiIiKmLiLiIqIioiIuN2NiIhImNjd3Y24mIiI2N2LSIiIiLiIuIuIiIiLioi0i4uJuIiImLiLiIiIiISIuIuNmNiNmNi424iI2I2EiL29u7vbvbu72w==",
         "mimeType": "image/x-mkcd-f4",
         "tilemapTile": true,
         "displayName": "myTile0"
+    },
+    "tile2": {
+        "data": "hwQQABAAAAD//////////5+ZmZmZmZn5n7+7u7u7+/mf+7u7u7u/+Z+7v7u7+7v5n7v7u7u/u/mfu7u/+7u7+Z+7u5u5u7v5n7u7m7m7u/mfu7u/+7u7+Z+7+7u7v7v5n7u/u7v7u/mf+7u7u7u/+Z+/u7u7u/v5n5mZmZmZmfn//////////w==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "myTile2"
+    },
+    "tile5": {
+        "data": "hwQQABAAAAD7////////v7/d3S3S3d3739vdLdLdvf3fvczMzMzb/d/N2y3Svdz93829LdLb3P3fzd0rst3c/S/CIpIpIizyL8IikikiLPLfzd0rst3c/d/NvS3S29z9383bLdK93P3fvczMzMzb/d/b3S3S3b39v93dLdLd3fv7////////vw==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "myTile3"
     },
     "level2": {
         "id": "level2",
