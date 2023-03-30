@@ -2,7 +2,82 @@ namespace SpriteKind {
     export const Blast = SpriteKind.create()
     export const Bomb = SpriteKind.create()
     export const Null = SpriteKind.create()
-}
+} 
+let images2: Image[] = []
+images2 = [
+    img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . 9 9 . . . . . . . 
+    . . . . . . . 9 9 . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `,
+    img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . 4 4 . . . . . . . 
+    . . . . . . . 4 4 . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `,
+    img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . 2 2 . . . . . . . 
+    . . . . . . 2 2 2 2 . . . . . . 
+    . . . . . . 2 2 2 2 . . . . . . 
+    . . . . . . . 2 2 . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `,
+    img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . 7 7 . . . . . . . 
+    . . . . . . 7 7 7 7 . . . . . . 
+    . . . . . 7 7 7 7 7 7 . . . . . 
+    . . . . . 7 7 7 7 7 7 . . . . . 
+    . . . . . . 7 7 7 7 . . . . . . 
+    . . . . . . . 7 7 . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `
+]
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile0`, function (sprite, location) {
     info.changeScoreBy(20)
     game.over(true)
@@ -19,32 +94,18 @@ sprites.onOverlap(SpriteKind.Blast, SpriteKind.Enemy, function (sprite, otherSpr
     sprites.destroy(otherSprite, effects.fire, 500)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (blaster >3){
+        blaster=3
+    }
     music.play(music.melodyPlayable(music.zapped), music.PlaybackMode.InBackground)
-    projectile = sprites.createProjectileFromSprite(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . 9 9 . . . . . . . 
-        . . . . . . 9 9 9 9 . . . . . . 
-        . . . . . . 9 9 9 9 . . . . . . 
-        . . . . . . . 9 9 . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `, Player1, 0, 0)
+    projectile = sprites.createProjectileFromSprite(images2[blaster], Player1, 0, 0)
     projectile.startEffect(effects.coolRadial)
     projectile.setKind(SpriteKind.Blast)
     projectile.setFlag(SpriteFlag.AutoDestroy, false)
     projectile.setBounceOnWall(true)
-    projectile.lifespan = 500
+    projectile.lifespan = ranges.removeAt(blaster)
     projectile.setFlag(SpriteFlag.DestroyOnWall, true)
-    changeSpeed(200, projectile)
+    changeSpeed(speeds.removeAt(blaster)+100, projectile)
 })
 sprites.onDestroyed(SpriteKind.Blast, function (sprite) {
     music.play(music.melodyPlayable(music.smallCrash), music.PlaybackMode.InBackground)
@@ -52,6 +113,9 @@ sprites.onDestroyed(SpriteKind.Blast, function (sprite) {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
     otherSprite.destroy(effects.confetti, 500)
     info.changeLifeBy(1)
+    if (blaster < 4) {
+        blaster += 1
+    }
 })
 function changeSpeed (speed: number, sprite: Sprite) {
     td = ViewAngle
@@ -188,11 +252,29 @@ let Snack: Sprite = null
 let Chest: Sprite = null
 let Player1: Sprite = null
 let CameraSpeed = 0
+let speeds: number[] = []
+let blaster = 0
+
+let ranges: number[] = []
 if (!(blockSettings.exists("Time"))) {
     blockSettings.writeNumber("Time", 0)
 }
 game.setGameOverMessage(true, "You Escaped! Time:" + game.runtime() / 1000)
-CameraSpeed = 7
+ranges = [
+200,
+1000,
+2000,
+2000
+]
+
+blaster = 0
+speeds = [
+150,
+240,
+200,
+300
+]
+CameraSpeed = 6
 let THRUSTER_VELOCITY = 200
 scene.setBackgroundImage(img`
     dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
