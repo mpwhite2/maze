@@ -2,82 +2,8 @@ namespace SpriteKind {
     export const Blast = SpriteKind.create()
     export const Bomb = SpriteKind.create()
     export const Null = SpriteKind.create()
-} 
-let images2: Image[] = []
-images2 = [
-    img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . 9 9 . . . . . . . 
-    . . . . . . . 9 9 . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `,
-    img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . 4 4 . . . . . . . 
-    . . . . . . . 4 4 . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `,
-    img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . 2 2 . . . . . . . 
-    . . . . . . 2 2 2 2 . . . . . . 
-    . . . . . . 2 2 2 2 . . . . . . 
-    . . . . . . . 2 2 . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `,
-    img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . 7 7 . . . . . . . 
-    . . . . . . 7 7 7 7 . . . . . . 
-    . . . . . 7 7 7 7 7 7 . . . . . 
-    . . . . . 7 7 7 7 7 7 . . . . . 
-    . . . . . . 7 7 7 7 . . . . . . 
-    . . . . . . . 7 7 . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `
-]
+    export const undefined = SpriteKind.create()
+}
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile0`, function (sprite, location) {
     info.changeScoreBy(20)
     game.over(true)
@@ -94,18 +20,60 @@ sprites.onOverlap(SpriteKind.Blast, SpriteKind.Enemy, function (sprite, otherSpr
     sprites.destroy(otherSprite, effects.fire, 500)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (blaster >3){
-        blaster=3
+    if (reload = true&& controller.A.isPressed()) {
+        if (blaster > 3) {
+            blaster = 3
+        }
+        reload = false
+        music.play(music.melodyPlayable(music.zapped), music.PlaybackMode.InBackground)
+        mySprite3.setImage(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . f f . . . . . . . 
+            . . . . . . f f f f . . . . . . 
+            . . . . . . f f f f . . . . . . 
+            . . . . . . . f f . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `)
+        projectile = sprites.createProjectileFromSprite(images2[blaster], Player1, 0, 0)
+        projectile.startEffect(effects.coolRadial)
+        projectile.setKind(SpriteKind.Blast)
+        projectile.setFlag(SpriteFlag.AutoDestroy, false)
+        projectile.setBounceOnWall(true)
+        projectile.lifespan = ranges[blaster]
+        projectile.setFlag(SpriteFlag.DestroyOnWall, true)
+        changeSpeed(speeds[blaster], projectile)
+        Render.setSpriteAttribute(projectile, RCSpriteAttribute.ZPosition, Render.getSpriteAttribute(Player1, RCSpriteAttribute.ZPosition))
+        pause(delays[blaster])
+        reload = true
+        mySprite3.setImage(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . 4 4 . . . . . . . 
+            . . . . . . 4 5 5 4 . . . . . . 
+            . . . . . . 2 5 5 2 . . . . . . 
+            . . . . . . . 2 2 . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `)
     }
-    music.play(music.melodyPlayable(music.zapped), music.PlaybackMode.InBackground)
-    projectile = sprites.createProjectileFromSprite(images2[blaster], Player1, 0, 0)
-    projectile.startEffect(effects.coolRadial)
-    projectile.setKind(SpriteKind.Blast)
-    projectile.setFlag(SpriteFlag.AutoDestroy, false)
-    projectile.setBounceOnWall(true)
-    projectile.lifespan = ranges.removeAt(blaster)
-    projectile.setFlag(SpriteFlag.DestroyOnWall, true)
-    changeSpeed(speeds.removeAt(blaster)+100, projectile)
 })
 sprites.onDestroyed(SpriteKind.Blast, function (sprite) {
     music.play(music.melodyPlayable(music.smallCrash), music.PlaybackMode.InBackground)
@@ -254,8 +222,112 @@ let Player1: Sprite = null
 let CameraSpeed = 0
 let speeds: number[] = []
 let blaster = 0
-
 let ranges: number[] = []
+let images2: Image[] = []
+let delays: number[] = []
+let mySprite3: Sprite = null
+mySprite3 = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . 4 4 . . . . . . . 
+    . . . . . . 4 5 5 4 . . . . . . 
+    . . . . . . 2 5 5 2 . . . . . . 
+    . . . . . . . 2 2 . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.undefined)
+mySprite3.setFlag(SpriteFlag.RelativeToCamera, true)
+mySprite3.setPosition(136, 21)
+let reload = false
+reload = true
+delays = [
+1000,
+750,
+500,
+200
+]
+images2 = [
+img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . 9 9 . . . . . . . 
+    . . . . . . . 9 9 . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `,
+img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . 4 4 . . . . . . . 
+    . . . . . . . 4 4 . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `,
+img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . 2 2 . . . . . . . 
+    . . . . . . 2 2 2 2 . . . . . . 
+    . . . . . . 2 2 2 2 . . . . . . 
+    . . . . . . . 2 2 . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `,
+img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . 7 7 . . . . . . . 
+    . . . . . . 7 7 7 7 . . . . . . 
+    . . . . . 7 7 7 7 7 7 . . . . . 
+    . . . . . 7 7 7 7 7 7 . . . . . 
+    . . . . . . 7 7 7 7 . . . . . . 
+    . . . . . . . 7 7 . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `
+]
 if (!(blockSettings.exists("Time"))) {
     blockSettings.writeNumber("Time", 0)
 }
@@ -266,7 +338,6 @@ ranges = [
 2000,
 2000
 ]
-
 blaster = 0
 speeds = [
 150,
@@ -559,6 +630,13 @@ game.onUpdate(function () {
     }
 })
 forever(function () {
+    if (info.score() > 19) {
+        tiles.setWallAt(tiles.getTileLocation(1, 1), false)
+        tiles.setTileAt(tiles.getTileLocation(1, 1), assets.tile`transparency16`)
+        tiles.setTileAt(tiles.getTileLocation(2, 2), assets.tile`myTile0`)
+    }
+})
+forever(function () {
     if (controller.left.isPressed()) {
         ViewAngle += 0 - CameraSpeed
         Render.setViewAngleInDegree(ViewAngle)
@@ -566,12 +644,5 @@ forever(function () {
     if (controller.right.isPressed()) {
         ViewAngle += CameraSpeed
         Render.setViewAngleInDegree(ViewAngle)
-    }
-})
-forever(function () {
-    if (info.score() > 19) {
-        tiles.setWallAt(tiles.getTileLocation(1, 1), false)
-        tiles.setTileAt(tiles.getTileLocation(1, 1), assets.tile`transparency16`)
-        tiles.setTileAt(tiles.getTileLocation(2, 2), assets.tile`myTile0`)
     }
 })
